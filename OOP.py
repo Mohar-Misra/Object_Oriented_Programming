@@ -1,3 +1,6 @@
+import csv
+
+
 class Item:
     pay_rate = 0.8 #Payrate after discount of 20%
     all = []
@@ -16,24 +19,31 @@ class Item:
 
     def totalprice(self):
         return self.price *self.quantity
+    
     def discount(self):
         return self.price * self.pay_rate
+    
+    @classmethod
+    def instantiate_from_csv(cls):
+        with open("items.csv", 'r') as f:
+            reader = csv.DictReader(f)
+            items = list(reader)
+        for item in items:
+            Item(
+                name = item.get('name'),
+                price = float(item.get('price')),
+                quantity = int(item.get('quantity'))
+            )
+
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
-item1 = Item("Phone", 100, 10)
-item2 = Item("Laptop", 1000, 5)
-item3 = Item("Watch", 500, 15)
-item4 = Item("Bracelet", 50, 3)
-item5 = Item("Airpods", 299, 20)
-
-# print(Item.all) Prints the presence of the number of instances in the Class atribute: 'all' in a list.
-
-#for items in Item.all: # Loops through the instances in the list from the class attribute.
-#    print(items.name, f"- {items.price} USD") # Prints the instance name and the price. 
-
+Item.instantiate_from_csv()
 print(Item.all)
 
+# print(Item.all) Prints the presence of the number of instances in the Class atribute: 'all' in a list.
+#for items in Item.all: # Loops through the instances in the list from the class attribute.
+#    print(items.name, f"- {items.price} USD") # Prints the instance name and the price. 
 #print(item1.discount())
 #item2.pay_rate = 0.7
 #print(item2.discount())
