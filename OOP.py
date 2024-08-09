@@ -34,12 +34,23 @@ class Item:
                 price = float(item.get('price')),
                 quantity = int(item.get('quantity'))
             )
+    @staticmethod
+    def is_integer(num):
+        # We will count out the floats that are point zero. i.e: 10.0, 5.0
+        if isinstance(num, float):
+            return num.is_integer()
+        elif isinstance(num, int):
+            return True
+        else:
+            return False
 
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
-Item.instantiate_from_csv()
-print(Item.all)
+print(Item.is_integer(4.5))
+
+#Item.instantiate_from_csv()
+#print(Item.all)
 
 # print(Item.all) Prints the presence of the number of instances in the Class atribute: 'all' in a list.
 #for items in Item.all: # Loops through the instances in the list from the class attribute.
