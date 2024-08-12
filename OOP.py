@@ -25,7 +25,7 @@ class Item:
     
     @classmethod
     def instantiate_from_csv(cls):
-        with open("items.csv", 'r') as f:
+        with open("E:\Code Repositories\Object_Oriented_Programming\items.csv", 'r') as f:
             reader = csv.DictReader(f)
             items = list(reader)
         for item in items:
@@ -47,10 +47,13 @@ class Item:
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
-print(Item.is_integer(4.5))
+#print(Item.is_integer(4.5))
 
-#Item.instantiate_from_csv()
-#print(Item.all)
+
+Item.instantiate_from_csv()
+print(Item.all)
+
+
 
 # print(Item.all) Prints the presence of the number of instances in the Class atribute: 'all' in a list.
 #for items in Item.all: # Loops through the instances in the list from the class attribute.
