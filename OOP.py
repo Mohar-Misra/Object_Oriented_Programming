@@ -47,11 +47,19 @@ class Item:
     def __repr__(self):
         return f"Item('{self.name}', {self.price}, {self.quantity})"
 
+class Phone(Item):
+    pass
+
+phone1 = Item("fon1", 500, 5)
+phone1.broken_phone = 1
+phone2 = Item("fon2", 700, 5)
+phone2.broken_phone = 1
+
 #print(Item.is_integer(4.5))
 
 
-Item.instantiate_from_csv()
-print(Item.all)
+#Item.instantiate_from_csv()
+#print(Item.all)
 
 
 
